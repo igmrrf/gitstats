@@ -7,6 +7,8 @@ sqalchemy_track_notifications = "SQLALCHEMY_TRACK_MODIFICATIONS"
 cache_type = "CACHE_TYPE"
 ratelimit_default = "RATELIMIT_DEFAULT"
 
+postgres_url = "POSTGRES_URL"
+redis_url = "REDIS_URL"
 
 # Consts
 github_base_url = "https://github.com"
