@@ -6,7 +6,8 @@ from flask import Flask
 from .common.cache import cache
 from .common.db import db
 from .common.error import LibraryError, handle_library_error
-from .common.limiter import limiter
+
+# from .common.limiter import limiter
 from .common.login import login_manager
 from .common.migrate import migrate
 from .core import core_bp
@@ -34,7 +35,7 @@ def create_app():
     login_manager.init_app(app)
     cache.init_app(app)
     migrate.init_app(app, db)
-    limiter.init_app(app)
+    # limiter.init_app(app) # awaiting redis
 
     app.register_blueprint(core_bp)
     app.register_blueprint(auth_bp, prefix_url="/auth")

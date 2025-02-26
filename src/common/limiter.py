@@ -3,6 +3,7 @@ from flask_limiter import Limiter
 
 limiter = Limiter(
     key_func=get_remote_address,
+    # setup accessible redis
     storage_uri="redis://localhost:6379",
     default_limits=["200 per day", "50 per hour"],
 )
