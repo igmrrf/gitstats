@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Stats - Analyze Your GitHub Profile</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+
+<body>
+  <header class="hero">
+    <nav>
+      <div class="logo">GitHub Stats</div>
+      <div class="nav-links">
+        <a href="{{ url_for('auth.login') }}" class="login-btn">Login with GitHub</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <h1>Unlock Your GitHub Insights</h1>
+      <p>Get detailed analytics, AI-generated resume, and share your programming journey</p>
+      <a href="{{ url_for('auth.login') }}" class="cta-button">Get Started</a>
+    </div>
+  </header>
+
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Language Analytics</h3>
+        <p>Track your programming language usage and expertise levels across all repositories.</p>
+      </div>
+      <div class="feature-card">
+        <h3>AI Resume Generator</h3>
+        <p>Generate professional resumes based on your GitHub contributions and projects.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Repository Insights</h3>
+        <p>Deep dive into your repositories with detailed statistics and contribution patterns.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Profile Sharing</h3>
+        <p>Share your GitHub stats and achievements with unique profile links.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Login with GitHub</h3>
+        <p>Securely connect your GitHub account with one click</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Analyze Profile</h3>
+        <p>We analyze your repositories and contributions</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Get Insights</h3>
+        <p>View detailed statistics and generate your resume</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>GitHub Stats</h4>
+        <p>Analyze and showcase your GitHub profile</p>
+      </div>
+      <div class="footer-section">
+        <h4>Links</h4>
+        <a href="#">About</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 GitHub Stats. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

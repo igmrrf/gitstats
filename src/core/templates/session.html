@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Home Page {% endblock%}
+
+{% block content %}
+<h1>Hello World</h1>
+
+<h2>JS JSON Request</h2>
+<p>{{message}}</p>
+<p>{{name}}</p>
+<p>{{other}}</p>
+
+<a href="{{url_for("set_data")}}" id="post_button">Set Session</button>
+<br>
+<a href="{{url_for("get_data")}}" id="post_button">Get Session</button>
+<br>
+<a href="{{url_for("clear_session")}}" id="post_button">Clear Session</button>
+
+<br>
+<a href="{{url_for("set_cookie")}}" id="post_button">Set Cookie</button>
+
+<br>
+<a href="{{url_for("clear_cookie")}}" id="post_button">Clear Cookie</button>
+
+<br>
+<a href="{{url_for("get_cookie")}}" id="post_button">Get Cookie</button>
+
+
+{% endblock %}

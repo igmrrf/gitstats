@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitStats - Beautiful Analytics for GitHub Repositories</title>
+  <meta name="description"
+    content="Transform your GitHub data into actionable insights with our elegant, powerful stats dashboard." />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/recharts/umd/Recharts.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+      <div class="container">
+        <div class="navbar-content">
+          <!-- Logo -->
+          <a href="/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+              </path>
+            </svg>
+            <span class="logo-text">GitStats</span>
+          </a>
+
+          <!-- Desktop Navigation -->
+          <div class="desktop-nav">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#stats" class="nav-link">Demo</a>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="desktop-cta">
+            <button class="cta-button">Get Started</button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="mobile-menu-toggle">
+            <button id="mobile-toggle">
+              <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="menu-icon">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+              <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="close-icon hidden">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu hidden">
+          <div class="mobile-menu-content">
+            <a href="#features" class="mobile-nav-link">Features</a>
+            <a href="#stats" class="mobile-nav-link">Demo</a>
+            <a href="#pricing" class="mobile-nav-link">Pricing</a>
+            <a href="#faq" class="mobile-nav-link">FAQ</a>
+            <button class="mobile-cta-button">Get Started</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="grid-pattern"></div>
+      <div class="hero-shape shape1"></div>
+      <div class="hero-shape shape2"></div>
+
+      <div class="container">
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Just Launched
+          </div>
+
+          <!-- Headline -->
+          <h1 class="headline">
+            Beautiful Analytics for Your <br class="desktop-break" />
+            <span class="gradient-text">GitHub Repositories</span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="subheadline">
+            Transform your GitHub data into actionable insights with our elegant, powerful stats dashboard that
+            simplifies complexity and reveals hidden patterns.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="hero-buttons">
+            <button class="primary-button">
+              Start for Free
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="button-icon">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button class="outline-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="button-icon">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+              Connect GitHub
+            </button>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="stats-cards">
+            <!-- Star Count Card -->
+            <div class="stat-card">
+              <div class="stat-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="stat-icon">
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                  </polygon>
+                </svg>
+              </div>
+              <h3 class="stat-number">87.3K</h3>
+              <p class="stat-label">Stars Tracked</p>
+            </div>
+
+            <!-- Commits Card -->
+            <div class="stat-card">
+              <div class="stat-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="stat-icon">
+                  <circle cx="18" cy="18" r="3"></circle>
+                  <circle cx="6" cy="6" r="3"></circle>
+                  <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+                  <line x1="6" y1="9" x2="6" y2="21"></line>
+                </svg>
+              </div>
+              <h3 class="stat-number">234K</h3>
+              <p class="stat-label">PRs Analyzed</p>
+            </div>
+
+            <!-- Repos Card -->
+            <div class="stat-card">
+              <div class="stat-icon-container">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="stat-icon">
+                  <line x1="6" y1="3" x2="6" y2="15"></line>
+                  <circle cx="18" cy="6" r="3"></circle>
+                  <circle cx="6" cy="18" r="3"></circle>
+                  <path d="M18 9a9 9 0 0 1-9 9"></path>
+                </svg>
+              </div>
+              <h3 class="stat-number">15.8K</h3>
+              <p class="stat-label">Repositories</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="top-gradient"></div>
+
+      <div class="container">
+        <!-- Section header -->
+        <div class="section-header">
+          <div class="section-badge">Powerful Features</div>
+          <h2 class="section-title">Everything you need to analyze your GitHub data</h2>
+          <p class="section-description">
+            Our platform provides comprehensive analytics tools designed to help you understand your repository
+            performance, team productivity, and code quality.
+          </p>
+        </div>
+
+        <!-- Features grid -->
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feature-icon">
+                <line x1="12" y1="20" x2="12" y2="10"></line>
+                <line x1="18" y1="20" x2="18" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="16"></line>
+              </svg>
+            </div>
+            <h3 class="feature-title">Repository Analytics</h3>
+            <p class="feature-description">Track stars, forks, issues, and pull requests with beautiful visualizations
+              that reveal trends over time.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feature-icon">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Contributor Insights</h3>
+            <p class="feature-description">Understand who's contributing to your projects, their impact, and how
+              collaboration is evolving.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feature-icon">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Activity Timeline</h3>
+            <p class="feature-description">See when your team is most active and identify peak productivity periods
+              throughout the day and week.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feature-icon">
+                <line x1="6" y1="3" x2="6" y2="15"></line>
+                <circle cx="18" cy="6" r="3"></circle>
+                <circle cx="6" cy="18" r="3"></circle>
+                <path d="M18 9a9 9 0 0 1-9 9"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Branch Analysis</h3>
+            <p class="feature-description">Compare activity across branches, identify merge bottlenecks, and optimize
+              your team's workflow.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feature-icon">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Code Quality Metrics</h3>
+            <p class="feature-description">Monitor code review coverage, issue resolution times, and other quality
+              indicators.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-container">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feature-icon">
+                <line x1="4" y1="19" x2="20" y2="19"></line>
+                <polyline points="4 15 8 9 12 11 16 6 20 10"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Custom Dashboards</h3>
+            <p class="feature-description">Create personalized views with the metrics that matter most to you and your
+              team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Dashboard Section -->
+    <section id="stats" class="stats-dashboard">
+      <div class="container">
+        <!-- Section header -->
+        <div class="section-header">
+          <div class="section-badge">Dashboard Preview</div>
+          <h2 class="section-title">Beautiful visualization of your GitHub data</h2>
+          <p class="section-description">
+            Our intuitive dashboards help you understand your GitHub activity at a glance, with powerful charts and
+            metrics.
+          </p>
+        </div>
+
+        <!-- Dashboard Preview -->
+        <div class="dashboard-preview">
+          <div class="dashboard-grid">
+            <!-- Star History Chart -->
+            <div class="chart-card">
+              <h3 class="chart-title">Star History</h3>
+              <div class="chart-container" id="star-history-chart"></div>
+            </div>
+
+            <!-- Weekly Commits Chart -->
+            <div class="chart-card">
+              <h3 class="chart-title">Weekly Commit Activity</h3>
+              <div class="chart-container" id="weekly-commit-chart"></div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-overview">
+              <div class="mini-stat-card">
+                <p class="mini-stat-label">Open Issues</p>
+                <h4 class="mini-stat-value">24</h4>
+              </div>
+
+              <div class="mini-stat-card">
+                <p class="mini-stat-label">Pull Requests</p>
+                <h4 class="mini-stat-value">12</h4>
+              </div>
+
+              <div class="mini-stat-card">
+                <p class="mini-stat-label">Contributors</p>
+                <h4 class="mini-stat-value">38</h4>
+              </div>
+
+              <div class="mini-stat-card">
+                <p class="mini-stat-label">Total Commits</p>
+                <h4 class="mini-stat-value">1,245</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call To Action Section -->
+    <section class="cta">
+      <div class="cta-bg-gradient"></div>
+      <div class="cta-shape shape1"></div>
+      <div class="cta-shape shape2"></div>
+
+      <div class="container">
+        <div class="cta-content">
+          <div class="animated-logo" id="animated-logo">
+            <canvas id="logo-canvas" width="120" height="120"></canvas>
+          </div>
+
+          <h2 class="cta-title">Ready to unlock insights from your GitHub repositories?</h2>
+
+          <p class="cta-description">
+            Join thousands of developers and teams who use GitStats to improve their workflow, prioritize work, and make
+            data-driven decisions.
+          </p>
+
+          <div class="cta-buttons">
+            <button class="cta-primary-button">
+              Start for Free
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="button-icon">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button class="cta-outline-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="button-icon">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+              Connect GitHub
+            </button>
+          </div>
+
+          <p class="cta-note">
+            No credit card required • Free tier available • Cancel anytime
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Logo and tag line -->
+          <div class="footer-branding">
+            <div class="footer-logo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="footer-logo-icon">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+              </svg>
+              <span class="footer-logo-text">GitStats</span>
+            </div>
+            <p class="footer-tagline">
+              Beautiful analytics for your GitHub repositories, providing insights that matter.
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="social-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="social-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                  </path>
+                </svg>
+              </a>
+              <a href="#" class="social-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+              <a href="#" class="social-link">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Footer Links -->
+          <div class="footer-links-container">
+            <div class="footer-links-column">
+              <h3 class="footer-links-title">Product</h3>
+              <ul class="footer-links">
+                <li><a href="#" class="footer-link">Features</a></li>
+                <li><a href="#" class="footer-link">Pricing</a></li>
+                <li><a href="#" class="footer-link">Integrations</a></li>
+                <li><a href="#" class="footer-link">Changelog</a></li>
+                <li><a href="#" class="footer-link">Documentation</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-links-column">
+              <h3 class="footer-links-title">Company</h3>
+              <ul class="footer-links">
+                <li><a href="#" class="footer-link">About</a></li>
+                <li><a href="#" class="footer-link">Blog</a></li>
+                <li><a href="#" class="footer-link">Careers</a></li>
+                <li><a href="#" class="footer-link">Press</a></li>
+                <li><a href="#" class="footer-link">Contact</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-links-column">
+              <h3 class="footer-links-title">Legal</h3>
+              <ul class="footer-links">
+                <li><a href="#" class="footer-link">Privacy</a></li>
+                <li><a href="#" class="footer-link">Terms</a></li>
+                <li><a href="#" class="footer-link">Cookie Policy</a></li>
+                <li><a href="#" class="footer-link">Licenses</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">
+            &copy; <span id="current-year"></span> GitStats. All rights reserved.
+          </p>
+
+          <div class="footer-bottom-links">
+            <a href="#" class="footer-bottom-link">Status</a>
+            <span class="footer-divider">•</span>
+            <a href="#" class="footer-bottom-link">Accessibility</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+
+</html>

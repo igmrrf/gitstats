@@ -1,0 +1,86 @@
+# Get home url
+GET http://localhost:5000/
+
+###
+
+# Get home url
+GET http://localhost:5000/other
+
+###
+
+# Greet with name
+GET http://localhost:5000/greet/4
+
+###
+
+# URL Params
+GET http://localhost:5000/handle_url?name=Mike&greeting=Hello
+
+###
+
+# Get all resources
+GET http://localhost:5000/api/users/
+Accept: application/json
+
+###
+
+# Get 
+GET http://localhost:5000/api/users/1
+Accept: application/json
+
+###
+
+# Post hello
+POST http://localhost:5000/hello
+Content-Type: application/json
+
+{
+  "name": "Mike"
+}
+
+###
+
+
+# Post hello
+POST http://localhost:5000/hello
+Content-Type: application/json
+
+{
+  "name": "Mike",
+  "greeting": "Hello"
+}
+
+###
+
+# Create a resoucre
+POST http://localhost:5000/api/users/
+Content-Type: application/json
+
+{
+    "name":"Francis",
+    "email":"francis.igbiriki@gmail.com"
+}
+
+###
+
+
+# Create a resoucre
+PATCH http://localhost:5000/api/users/1
+Content-Type: application/json
+
+{
+    "name":"John Doer",
+    "email":"johndoer@example.com"
+}
+
+###
+
+
+# Get a single resource
+GET http://localhost:5000/api/users/1
+
+###
+
+# Delete a single resource
+DELETE http://localhost:5000/api/users/1
+

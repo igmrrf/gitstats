@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Home Page {% endblock%}
+
+{% block content %}
+<h1>Hello World</h1>
+<form method="POST" action="{{url_for('index')}}">
+  <input type="text" name="username" placeholder="Username"><br>
+  <input type="password" name="password" placeholder="Password"><br>
+  <input type="submit" value="Login">
+</form>
+
+
+<h2>File Upload</h2>
+<form method="POST" action={{url_for('file_upload')}} enctype="multipart/form-data">
+  <input type="file" name="doc_file"
+    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, text/plain" />
+  <input type="submit" value="Upload file">
+</form>
+
+
+<h2>Covert CSV</h2>
+<form method="POST" action={{url_for('convert_csv')}} enctype="multipart/form-data">
+  <input type="file" name="doc_file" accept="application/vnd.ms-excel" />
+  <input type="submit" value="Upload file">
+</form>
+
+<h2>Covert CSV Two</h2>
+<form method="POST" action={{url_for('convert_csv_two')}} enctype="multipart/form-data">
+  <input type="file" name="doc_file" accept="application/vnd.ms-excel" />
+  <input type="submit" value="Upload file">
+</form>
+
+<h2>Upload File</h2>
+<form method="POST" action={{url_for('upload_file')}} enctype="multipart/form-data">
+  <input type="file" name="doc_file" accept="text/plain" />
+  <input type="submit" value="Save file">
+</form>
+{% endblock %}
