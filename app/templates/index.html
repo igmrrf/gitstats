@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="badge">v0.38.2 &mdash; Alpha</div>
+    <h1>Engineering <br><em>High Fidelity</em></h1>
+    <div class="hero-meta">
+        <div class="hero-desc">
+            <p>GitStat Next transforms raw GitHub data into a curated engineering narrative. We leverage Gemini-pro to synthesize your repository footprint into high-impact summaries designed for high-craft developers.</p>
+            <div style="margin-top: 3rem; display: flex; gap: 1.5rem; align-items: center;">
+                {% if user %}
+                    <a href="/dashboard" class="btn">Access Dashboard</a>
+                {% else %}
+                    <a href="/api/v1/auth/login" class="btn">Connect GitHub</a>
+                {% endif %}
+                <a href="{{ repo_url }}" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--fg); text-decoration: underline;">View Source &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="border-top: 1px solid var(--border); padding: 8rem 0;">
+    <div class="hero-meta">
+        <div style="grid-column: span 12; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+            <div>
+                <span class="badge">01</span>
+                <h3 style="font-family: var(--font-display); font-size: 2.5rem; margin: 1rem 0; letter-spacing: -0.02em;">Automated Synthesis</h3>
+                <p style="color: var(--muted); line-height: 1.6;">Using Gemini 1.5 Pro to analyze your commit history, PR impact, and repository distribution. We don't just count stars; we explain the context of your influence.</p>
+            </div>
+            <div>
+                <span class="badge">02</span>
+                <h3 style="font-family: var(--font-display); font-size: 2.5rem; margin: 1rem 0; letter-spacing: -0.02em;">Agnostic Design</h3>
+                <p style="color: var(--muted); line-height: 1.6;">Built on a provider-agnostic AI backbone. Switch between Gemini, OpenAI, or local LLMs while maintaining a consistent editorial aesthetic.</p>
+            </div>
+            <div>
+                <span class="badge">03</span>
+                <h3 style="font-family: var(--font-display); font-size: 2.5rem; margin: 1rem 0; letter-spacing: -0.02em;">Editorial UI</h3>
+                <p style="color: var(--muted); line-height: 1.6;">Designed for visual memorability. A layout inspired by technical journals and luxury typography, optimized for responsive clarity across all devices.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

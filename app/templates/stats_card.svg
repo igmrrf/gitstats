@@ -1,0 +1,35 @@
+<svg width="450" height="200" viewBox="0 0 450 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Inter:wght@400;600');
+      .header { font-family: 'Instrument Serif', serif; font-size: 24px; fill: #000; }
+      .label { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; fill: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+      .value { font-family: 'Instrument Serif', serif; font-size: 32px; fill: #000; }
+      .rank-label { font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 600; fill: #888; text-transform: uppercase; letter-spacing: 0.2em; }
+      .rank-value { font-family: 'Instrument Serif', serif; font-size: 64px; fill: #000; }
+    </style>
+  </defs>
+
+  <rect width="450" height="200" fill="#fff"/>
+  <rect x="0.5" y="0.5" width="449" height="199" stroke="#f0f0f0"/>
+
+  <text x="30" y="45" class="header">{{ username }}</text>
+  
+  <g transform="translate(30, 80)">
+    <text x="0" y="0" class="label">Stars</text>
+    <text x="0" y="30" class="value">{{ stars }}</text>
+    
+    <text x="120" y="0" class="label">Repos</text>
+    <text x="120" y="30" class="value">{{ public_repos }}</text>
+  </g>
+
+  <g transform="translate(30, 150)">
+    <text x="0" y="0" class="label">Followers</text>
+    <text x="0" y="30" class="value">{{ followers }}</text>
+  </g>
+
+  <g transform="translate(350, 110)">
+    <text x="0" y="-45" class="rank-label" text-anchor="middle">GitHub Rank</text>
+    <text x="0" y="15" class="rank-value" text-anchor="middle">{{ rank }}</text>
+  </g>
+</svg>

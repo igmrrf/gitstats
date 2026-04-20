@@ -1,0 +1,34 @@
+[project]
+name = "gitstat-next"
+version = "0.1.0"
+description = "Consolidated GitHub Statistics and SVG Card Generator"
+authors = [{ name = "Gemini CLI" }]
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "httpx",
+    "sqlalchemy[asyncio]",
+    "asyncpg",
+    "pydantic-settings",
+    "redis[asyncio]",
+    "jinja2",
+    "python-dotenv",
+    "authlib",
+    "itsdangerous",
+    "cryptography>=46.0.7",
+    "aiosqlite>=0.22.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "black",
+    "isort",
+    "httpretty",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

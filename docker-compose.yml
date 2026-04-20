@@ -1,39 +1,23 @@
-services:
-  gateway:
-    build: .
-    # image: gitstats:latest
-    restart: always
-    env_file:
-      - .env
-    ports:
-      - "5000:5000"
-    depends_on:
-      - postgres
-      - redis
-    # volumes:
-    #   - .:/src
+version: '3.8'
 
-  postgres:
-    image: postgres:latest
-    restart: always
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: gitstat-next-db
     environment:
-      POSTGRES_USER: yourusername
-      POSTGRES_PASSWORD: yourpassword
-      POSTGRES_DB: yourdatabase
+      POSTGRES_USER: gitstat
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: gitstat_db
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./initdb:/docker-entrypoint-initdb.d
 
   redis:
-    image: redis:latest
-    restart: always
+    image: redis:7-alpine
+    container_name: gitstat-next-redis
     ports:
       - "6379:6379"
-    volumes:
-      - redis_data:/data
 
 volumes:
   postgres_data:
-  redis_data:

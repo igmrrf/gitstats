@@ -1,0 +1,8 @@
+warning: No `requires-python` value found in the workspace. Defaulting to `>=3.14`.
+/Users/igmrrf/Desktop/Basket/gitstat-next/.venv/lib/python3.14/site-packages/authlib/_joserfc_helpers.py:8: AuthlibDeprecationWarning: authlib.jose module is deprecated, please use joserfc instead.
+It will be compatible before version 2.0.0.
+  from authlib.jose import ECKey
+INFO:     Started server process [18501]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)

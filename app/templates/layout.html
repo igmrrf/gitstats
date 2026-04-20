@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default("GitStat Next") }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FDFCFB;
+            --fg: #1A1A1A;
+            --muted: #7F7F7F;
+            --border: #E5E5E5;
+            --accent: #000000;
+            --font-display: 'Instrument Serif', serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --container: 1400px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-sans);
+            margin: 0;
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            height: 4.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            text-decoration: none;
+            color: var(--fg);
+            letter-spacing: -0.02em;
+        }
+
+        .logo sup { font-size: 0.5rem; top: -1em; }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a {
+            color: var(--fg);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover { opacity: 0.6; }
+
+        main {
+            flex: 1;
+            padding: 4rem 0;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem 0 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            color: var(--fg);
+            margin: 0 0 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col li { margin-bottom: 0.5rem; }
+
+        .footer-col a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .footer-col a:hover { color: var(--fg); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Hero / Content Styles */
+        .hero {
+            padding: 4rem 0 8rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 12vw, 8rem);
+            line-height: 0.85;
+            margin: 0 0 3rem;
+            letter-spacing: -0.04em;
+        }
+
+        .hero h1 em { font-style: italic; font-weight: 400; }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .hero-desc {
+            grid-column: span 12;
+            font-size: 1.25rem;
+            max-width: 600px;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-desc { grid-column: span 6; }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: var(--fg);
+            color: var(--bg);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover { transform: translateY(-2px); }
+
+        .badge {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--border);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="logo">GitStat<sup>&trade;</sup></a>
+                <nav class="nav-links">
+                    <a href="/">Index</a>
+                    {% if user %}
+                        <a href="/dashboard">Dashboard</a>
+                        <a href="/api/v1/auth/logout">Logout</a>
+                    {% else %}
+                        <a href="/api/v1/auth/login">Connect GitHub</a>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>GitStat Next</h4>
+                    <p>High-fidelity engineering metrics for developers who care about craft.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="https://github.com/igmrrf/gitstat-next">GitHub Repository</a></li>
+                        <li><a href="/docs">API Documentation</a></li>
+                        <li><a href="/changelog">Version 0.38.2</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 GitStat Industrial.</div>
+                <div>v0.38.2 &mdash; GEMINI CORE</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
